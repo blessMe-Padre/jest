@@ -1,9 +1,28 @@
-const reverseString = require('./test/task_01');
+const reverseString = require('./test/reverse_string');
 
-test(
-    'Проверяем реверс строки',
-    () => {
-        expect(reverseString('hello')).toBe('olleh');
-    }
-);
+describe('Проверяем реверс строки:', () => {
+    const testCase = [
+        {
+            inString: 'hello',
+            expected: 'olleh',
+        },
+        {
+            inString: 'jest',
+            expected: 'tsej',
+        },
+        {
+            inString: 'script',
+            expected: 'tpircs',
+        },
+    ];
 
+    testCase.forEach(test => {
+        it(
+            `Входящая строка: ${test.inString} ожидается ${test.expected}`,
+            () => {
+                const res = reverseString(test.inString);
+                expect(res).toBe(test.expected);
+            }
+        );
+    })
+});
